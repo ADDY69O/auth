@@ -35,7 +35,7 @@ const SignUp = () => {
             
         const body={email,password,username,phone};
 
-        await axios.post("http://localhost:5000/api/v1/user/register",body).then(response => {
+        await axios.post("https://auth-962m.onrender.com/api/v1/user/register",body).then(response => {
            window.alert(response.data.message);
            window.location.href="/";
           })

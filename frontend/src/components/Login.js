@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 
             const body={email,password};
 
-            await axios.post("http://localhost:5000/api/v1/user/login",body).then(response => {
+            await axios.post("https://auth-962m.onrender.com/api/v1/user/login",body).then(response => {
                 window.alert(response.data.message);
                 localStorage.setItem("userInfo",response.data.token);
                 window.location.href="/home";
