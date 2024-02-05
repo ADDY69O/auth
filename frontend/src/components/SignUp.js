@@ -69,17 +69,7 @@ const SignUp = () => {
             <button onClick={()=>{handleSubmit()}} className='py-3 px-6 border-2 rounded-lg border-gray-400 bg-blue-500 text-white hover:bg-blue-800 transition-all duration-300 focus:outline-none'>
                 Sign Up
             </button>
-            <div className='mt-8 bg-red-500 p-4 rounded-md'>
-                <h2 className='text-2xl font-bold mb-2 text-white'>Rules</h2>
-                <ul className='list-disc pl-6 text-white'>
-                    <li className='mb-2'>Full Name - Can not be null</li>
-                    <li className='mb-2'>Email - Validate Email</li>
-                    <li className='mb-2'>Mobile No - Number type with length of 10</li>
-                    <li className='mb-2'>Password - Validation with minimum length of 8 and Alpha Numeric</li>
-                    <li>Confirm Password - Must match with Password</li>
-                </ul>
-            </div>
-        
+            <a href="/">Login</a>
         </div>
     );
 };

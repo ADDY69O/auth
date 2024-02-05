@@ -27,7 +27,6 @@ import React, { useState } from 'react';
 
                 window.alert(error.response.data.message)
 
-              
               });
        
         }
@@ -46,6 +45,7 @@ import React, { useState } from 'react';
                 <button onClick={()=>handleSubmit()} className='py-3 px-6 border-2 rounded-lg border-gray-400 bg-blue-500 text-white hover:bg-blue-800 transition-all duration-300 focus:outline-none'>
                     Login
                 </button>
+                <a href="/SignUp"> sign up</a>
             </div>
         );
     };

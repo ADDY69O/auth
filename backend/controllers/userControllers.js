@@ -25,7 +25,7 @@ const jwt =require("jsonwebtoken");
                const token = jwt.sign(payload,process.env.JWT_SECRET,{
                    expiresIn:"30d",
                })
-        return res.status(200).json({message:"Successfully logged in "})
+        return res.status(200).json({message:"Successfully logged in ",status:"success", user:prevUser,token})
             }
             else{
                 return res.status(400).json({status:"failed",message:"Invalid email or password"});
@@ -74,11 +74,12 @@ const jwt =require("jsonwebtoken");
           
         }
 
-        const prevUser = await User.find({email});
+        const prevUser = await User.find({ $or: [{ email }, { phone }] });
+
 
         if(prevUser.length>0){
             console.log(prevUser)
-            return res.status(400).json({message:"user already created",status:"failed"})
+            return res.status(400).json({message:"user already exist",status:"failed"})
         }
         
 
@@ -86,11 +87,11 @@ const jwt =require("jsonwebtoken");
         const newUser = await User.create({email,password,phone,username});
 
         //generating jwt token with newUserId
-        const payload = {userId : newUser._id}
-        const token = jwt.sign(payload,process.env.JWT_SECRET,{
-            expiresIn:"30d",
-        })
-        return res.status(200).json({message:"user created Successfully",status:"success",token});
+        // const payload = {userId : newUser._id}
+        // const token = jwt.sign(payload,process.env.JWT_SECRET,{
+        //     expiresIn:"30d",
+        // })
+        return res.status(200).json({message:"user created Successfully",status:"success"});
 
     } catch (error) {
         console.log(error)

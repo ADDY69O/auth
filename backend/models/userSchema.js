@@ -8,9 +8,6 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        minlength:[1,"Email should not be null"],
-        
-        unique: true,
         require:true
     },
     password:{
@@ -20,9 +17,6 @@ const userSchema = new mongoose.Schema({
     },
     phone:{
         type:Number,
-        minlength:[10,"Phone Number should be of 10 digits"],
-        maxlength:[10,"Phone Number should be of 10 digits"],
-        unique:true,
         require:true
     }
 
