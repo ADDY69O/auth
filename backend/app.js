@@ -18,6 +18,9 @@ app.use('/api/v1/user',require('./routes/userRoutes'))
 
 const PORT = process.env.PORT || 5000;
 
+app.get('/',(req,res)=>{
+    res.send(`backend working`)
+})
 
 app.listen( PORT ,(req,res)=>{
     console.log(`listening on PORT ${PORT}`)
