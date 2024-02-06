@@ -35,8 +35,6 @@ const jwt =require("jsonwebtoken");
 } catch (error) {
     return res.status(400).json({error:"Internal Server error",status:"failed"})  
 }
-    
-
 
 
 
@@ -54,27 +52,23 @@ const jwt =require("jsonwebtoken");
         if(!email || !password || !phone || !username){
             return res.status(400).json({message:"please provide all the credentitals",status:"failed"});
         }
-        if (!username) {
-            return res.status(400).json({Message:'Full Name can not be null'});
+        else if (!username || typeof username !== 'string' ||  /\d/.test(username) ) {
+            return res.status(400).json({Message:' enter valid username it contains only alphabets'});
            
         }
-
-        if (!(email.includes('@') && email.includes('.'))) {
-            return res.status(400).json({Message:'Invalid Email'});
-          
+        else if (!(email.includes('@') && email.includes('.') )  ||  !(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) ) {
+            return res.status(400).json({Message:'Invalid Email'});  
         }
-
-        if (! ((phone.length === 10 ) && !isNaN(phone))  ) {
+        else if (! ((phone.length === 10 ) && !isNaN(phone))  ) {
             return res.status(400).json({Message:'Mobile No should be a number with a length of 10'});
             
         }
-
-        if (!(password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password))) {
+        else if (!(password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password))) {
             return res.status(400).json({Message:'Password should be at least 8 characters long and alphanumeric'});
           
         }
-
-        const prevUser = await User.find({ $or: [{ email }, { phone }] });
+        else{
+        const prevUser = await User.find({  email } );
 
 
         if(prevUser.length>0){
@@ -92,13 +86,11 @@ const jwt =require("jsonwebtoken");
         //     expiresIn:"30d",
         // })
         return res.status(200).json({message:"user created Successfully",status:"success"});
-
+    }
     } catch (error) {
         console.log(error)
         return res.status(400).json({error:"Internal Server error",status:"failed"})
     }
-
-
 
 }
 
