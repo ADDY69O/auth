@@ -81,11 +81,11 @@ const jwt =require("jsonwebtoken");
         const newUser = await User.create({email,password,phone,username});
 
         //generating jwt token with newUserId
-        // const payload = {userId : newUser._id}
-        // const token = jwt.sign(payload,process.env.JWT_SECRET,{
-        //     expiresIn:"30d",
-        // })
-        return res.status(200).json({message:"user created Successfully",status:"success"});
+        const payload = {userId : newUser._id}
+        const token = jwt.sign(payload,process.env.JWT_SECRET,{
+            expiresIn:"30d",
+        })
+        return res.status(200).json({token,message:"user created Successfully",status:"success"});
     }
     } catch (error) {
         console.log(error)
